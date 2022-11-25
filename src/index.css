@@ -57,7 +57,6 @@ ul.react-multi-carousel-track {
   @apply gap-10 duration-500 ease-in
 }
 
-
-/* .react-multi-carousel-track li{
-  flex: 1 1 1;
-} */
+.carousel-container {
+  @apply w-full
+}

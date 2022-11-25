@@ -60,7 +60,8 @@ const OffersSection = () => {
           </p>
         </div>
         <Carousel
-          className="w-full"
+          containerClass="carousel-container"
+          // className="w-full"
           responsive={responsive}
           customTransition="all .5"
           transitionDuration={1000}

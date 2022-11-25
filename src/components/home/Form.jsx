@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import formImage from '../../images/Image.png'
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const Form = () => {
+
+  const [value, setValue] = useState();
+
   return (
     <section className="my-20 max-w-[1440px] mx-auto lg:px-[5%] px-8">
       <div className="max-w-[48.1rem] mx-auto flex flex-col gap-2 text-center mb-10">
@@ -50,16 +55,19 @@ const Form = () => {
               <div className="flex flex-col gap-1">
                 <label className="text-color-black-200">Order name</label>
                 <input
-                  type="text"
-                  placeholder="Your name"
+                  type="number"
+                  placeholder="(+84) 123 465 798 "
                   className=" py-[0.625rem] px-5 border border-color-black-100 outline-none rounded-xl focus:border-2 duration-300 text-color-black-200"
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-color-black-200">Phone number</label>
-                <input
-                  type="number"
-                  placeholder="(+84) 123 465 798 "
+                <PhoneInput
+                  international
+                  defaultCountry="NG"
+                  placeholder="Enter phone number"
+                  value={value}
+                  onChange={setValue}
                   className=" py-[0.625rem] px-5 border border-color-black-100 outline-none rounded-xl focus:border-2 duration-300 text-color-black-200"
                 />
               </div>
