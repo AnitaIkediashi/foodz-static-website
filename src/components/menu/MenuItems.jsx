@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { slides } from "../../data";
 import MenuButtons from "./MenuButtons";
 import MenuCategories from "./MenuCategories";
+import {motion, AnimatePresence} from 'framer-motion'
 
+const allCategories = [...new Set(slides.map(item => item.category))]
+// console.log(allCategories);
 
 const MenuItems = () => {
+  const [menuItem, setMenuItem] = useState(slides);
+  const [buttons, setButtons] = useState(allCategories);
+  const [selected, setSelected] = useState("")
+
+  const filter = (catItem) => {
+    const filterData = slides.filter(
+      (currentItem) => currentItem.category === catItem
+    );
+    setMenuItem(filterData);
+
+  };
+
   return (
     <>
       <section className="py-40 max-w-[1440px] mx-auto lg:px-[5%] px-8">
@@ -18,11 +34,15 @@ const MenuItems = () => {
         </div>
 
         {/* buttons */}
-        <MenuButtons />
-        
-        <div>
-          <MenuCategories />
-        </div>
+        <MenuButtons filter={filter} buttons={buttons} selected={selected} setSelected={setSelected} />
+
+        <motion.div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+          <AnimatePresence>
+            {menuItem?.map((item, idx) => {
+              return <MenuCategories {...item} key={idx} />;
+            })}
+          </AnimatePresence>
+        </motion.div>
       </section>
     </>
   );
